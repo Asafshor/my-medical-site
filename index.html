@@ -3,101 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medical History Questionnaire</title>
+    <title>Health Insurance Specialist | Multi-State Licensed</title>
     <style>
-        :root { --blue-dark: #1e3a8a; --blue-med: #3b82f6; --bg: #f8fafc; --text: #1e293b; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg); margin: 0; padding: 40px 20px; }
-        .container { max-width: 900px; margin: 0 auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        h1 { color: var(--blue-dark); text-align: center; border-bottom: 3px solid var(--blue-med); padding-bottom: 15px; margin-bottom: 30px; font-size: 2rem; }
-        .instruction { font-weight: 600; background: #eff6ff; padding: 20px; border-radius: 8px; border-left: 5px solid var(--blue-med); margin-bottom: 30px; color: #1e40af; }
-        h2 { color: var(--blue-dark); border-bottom: 1px solid #e2e8f0; margin-top: 40px; padding-bottom: 10px; font-size: 1.4rem; }
-        .q-row { display: flex; gap: 15px; padding: 15px 0; border-bottom: 1px solid #f1f5f9; align-items: flex-start; }
-        .q-row:last-child { border-bottom: none; }
+        :root { --blue-dark: #1e3a8a; --blue-med: #3b82f6; --bg: #f8fafc; --text: #1e293b; --accent: #10b981; --gold: #f59e0b; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg); margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        
+        /* Header & Profile */
+        .profile-header { text-align: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 30px; margin-bottom: 30px; }
+        .profile-img { width: 140px; height: 140px; border-radius: 50%; border: 4px solid var(--blue-med); margin-bottom: 15px; background: #e2e8f0; object-fit: cover; }
+        .badge { background: #dbeafe; color: #1e40af; padding: 6px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; display: inline-block; }
+        
+        /* Contact Buttons */
+        .contact-bar { display: flex; justify-content: center; gap: 15px; margin: 25px 0; flex-wrap: wrap; }
+        .btn { text-decoration: none; padding: 14px 28px; border-radius: 10px; font-weight: 700; transition: 0.3s; display: inline-block; text-align: center; min-width: 160px; }
+        .btn-blue { background: var(--blue-med); color: white; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3); }
+        .btn-outline { border: 2px solid var(--blue-med); color: var(--blue-med); }
+        .btn:hover { transform: translateY(-2px); opacity: 0.9; }
+        
+        /* Info Grid */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
+        .info-box { padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; position: relative; }
+        .referral-box { background: #ecfdf5; border: 2px dashed var(--accent); }
+        .referral-box h3 { color: #065f46; margin-top: 0; display: flex; align-items: center; gap: 8px; }
+        .referral-amount { color: var(--accent); font-size: 1.4rem; font-weight: 800; }
+        
+        /* How It Works */
+        .how-it-works { background: #fdf2f8; border: 1px solid #fce7f3; padding: 30px; border-radius: 12px; margin-bottom: 40px; }
+        .step { display: flex; gap: 15px; margin-bottom: 15px; align-items: flex-start; }
+        .step-num { background: var(--blue-dark); color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: bold; margin-top: 3px; }
+        .highlight-text { color: var(--blue-dark); font-weight: 700; }
+
+        /* Questionnaire Section */
+        .medical-header { text-align: center; margin-bottom: 25px; }
+        .instruction { font-weight: 600; background: #eff6ff; padding: 20px; border-radius: 8px; border-left: 5px solid var(--blue-med); margin: 20px 0; }
+        .q-row { display: flex; gap: 15px; padding: 12px 0; border-bottom: 1px solid #f1f5f9; font-size: 0.95rem; }
         .q-letter { font-weight: bold; color: var(--blue-med); min-width: 35px; }
-        .q-text { flex: 1; }
-        .q-text strong { color: #0f172a; }
-        .footer { text-align: center; margin-top: 50px; font-size: 0.85rem; color: #94a3b8; border-top: 1px solid #e2e8f0; padding-top: 20px; }
+        
+        @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Applicant Medical History</h1>
-    
-    <div class="instruction">
-        Has any applicant been diagnosed with, treated or taken medications for, consulted with, had symptoms of, or been advised to seek treatment for any disease or disorder of the:
+    <div class="profile-header">
+        <img src="profile.jpg" alt="Agent Photo" class="profile-img">
+        <div><span class="badge">Multi-State Licensed Professional</span></div>
+        <h2 style="margin: 15px 0 5px 0;">Asaf Shor</h2>
+        <p style="color: #64748b; margin: 0; font-size: 1.1rem;">Expert Guidance for ACA Marketplace & Private Insurance</p>
+        
+        <div class="contact-bar">
+            <a href="tel:214-270-9066" class="btn btn-blue">📞 Call or Text Me</a>
+            <a href="mailto:Healthbyasaf@gmail.com" class="btn btn-outline">✉️ Email for Info</a>
+        </div>
     </div>
 
-    <div class="q-row"><div class="q-letter">a)</div><div class="q-text"><strong>Lungs or Respiratory system:</strong> Including but not limited to Asthma, Allergies, Pneumonia, Chronic Bronchitis, Emphysema or Sleep Apnea?</div></div>
-    
-    <div class="q-row"><div class="q-letter">b)</div><div class="q-text"><strong>Heart or Circulatory system:</strong> Including but not limited to High Blood Pressure, Coronary Artery Disease, Heart Attack, Stroke, Heart Murmur, Congestive Heart Failure, Mitral Valve Prolapse, or Irregular Heartbeat?</div></div>
-    
-    <div class="q-row"><div class="q-letter">c)</div><div class="q-text"><strong>Blood or Blood forming organs:</strong> Including but not limited to Anemia, Hemophilia, or Blood Clots?</div></div>
-    
-    <div class="q-row"><div class="q-letter">d)</div><div class="q-text"><strong>Stomach, Esophagus, Intestines, Rectum, or Digestive system:</strong> Including by not limited to Ulcers, Colitis, Gastritis, Crohn’s disease, Hernia, Hemorrhoids, or Gallbladder disease?</div></div>
-    
-    <div class="q-row"><div class="q-letter">e)</div><div class="q-text"><strong>Liver:</strong> Including but not limited to Hepatitis, or Cirrhosis?</div></div>
-    
-    <div class="q-row"><div class="q-letter">f)</div><div class="q-text"><strong>Kidneys or Urinary System:</strong> Including but not limited to Kidney Stones, Urinary Tract Infections, Cystitis, or Urinary Incontinence?</div></div>
-    
-    <div class="q-row"><div class="q-letter">g)</div><div class="q-text"><strong>Pancreas:</strong> Including but not limited to Pancreatitis, Diabetes, or Sugar/Glucose Intolerance?</div></div>
-    
-    <div class="q-row"><div class="q-letter">h)</div><div class="q-text"><strong>Thyroid, Pituitary, Adrenal or Endocrine glands:</strong> Including but not limited to Hyperthyroidism, Graves’ Disease, or Goiter?</div></div>
-    
-    <div class="q-row"><div class="q-letter">i)</div><div class="q-text"><strong>Neuromuscular system:</strong> Including but not limited to Parkinson’s Disease, Muscular Dystrophy, or Lou Gehrig’s Disease ALS?</div></div>
-    
-    <div class="q-row"><div class="q-letter">j)</div><div class="q-text"><strong>Muscles, Joints, or Connective Tissues:</strong> Including but not limited to Rheumatism, Arthritis, Rheumatoid Arthritis, Gout, Fibromyalgia, Temporomandibular Joint disorder (TMJ), Carpal Tunnel Syndrome, Lupus or Lyme disease?</div></div>
-    
-    <div class="q-row"><div class="q-letter">k)</div><div class="q-text"><strong>Back, Neck or Spine:</strong> Including but not limited to Sprain or Strain, Herniated or Slipped Disc, Chiropractic Adjustments or Spinal Manipulations?</div></div>
-    
-    <div class="q-row"><div class="q-letter">l)</div><div class="q-text"><strong>Brain or Central Nervous System:</strong> Including but not limited to Convulsions, Epilepsy, Seizures, Recurrent Headaches, Migraine(s), Dementia, Multiple Sclerosis, or Paralysis?</div></div>
-    
-    <div class="q-row"><div class="q-letter">m)</div><div class="q-text"><strong>Skin:</strong> Including but not limited to Psoriasis or Eczema?</div></div>
-    
-    <div class="q-row"><div class="q-letter">n)</div><div class="q-text"><strong>Eyes, Ears, Nose or Throat:</strong> Including but not limited to Glaucoma, Cataracts, Blindness, Tubes in Ears, Deafness or Hearing loss, Cochlear Implants, or Chronic Tonsillitis?</div></div>
-    
-    <div class="q-row"><div class="q-letter">o)</div><div class="q-text"><strong>Male Applicant(s):</strong> Breast, Prostate, or Male Reproductive System including but not limited to an abnormal PSA test or impotence?</div></div>
-    
-    <div class="q-row"><div class="q-letter">p)</div><div class="q-text"><strong>Female Applicant(s):</strong> Breast or Female Reproductive System including but not limited to Endometriosis, Pelvic Pain, Menstruation Disorder, Abnormal Pap Test, Cyst or Fibroid Tumors?</div></div>
-    
-    <div class="q-row"><div class="q-letter">q)</div><div class="q-text"><strong>Female Applicant(s):</strong> Has any applicant ever had a Cesarean Section, miscarriage, abortion, or premature delivery?</div></div>
+    <div class="how-it-works">
+        <h3 style="margin-top:0; color: #9d174d;">Quick & Easy Enrollment Process</h3>
+        <div class="step">
+            <div class="step-num">1</div>
+            <div><span class="highlight-text">Reach Out:</span> Simply call or text me to start. No long forms to fill out yourself.</div>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <div><span class="highlight-text">Set a Call:</span> We'll schedule a quick phone chat at your convenience.</div>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <div><span class="highlight-text">Get All Options:</span> I'll find your best rates. <span style="background: #fff; padding: 2px 6px; border-radius: 4px; border: 1px solid #fbcfe8;"><strong>Free Screenshare Call Available</strong></span>—you see the plans exactly as I do!</div>
+        </div>
+    </div>
 
-    <h2>Current Status & Medical History</h2>
+    <div class="grid">
+        <div class="info-box">
+            <h3 style="margin-top:0;">Available Coverage</h3>
+            <p><strong>ACA Marketplace:</strong> Guaranteed issue, no medical questions, and potential government subsidies.</p>
+            <p><strong>Private Plans:</strong> Tailored coverage for those in good health, often with lower premiums and better networks.</p>
+        </div>
+        <div class="info-box referral-box">
+            <h3>Referral Program 💰</h3>
+            <p>Help others find better health coverage! I pay <span class="referral-amount">$50 – $100</span> for every referral you send that successfully enrolls in a plan.</p>
+        </div>
+    </div>
 
-    <div class="q-row"><div class="q-letter">3.</div><div class="q-text">Is any applicant listed currently pregnant, or expecting a child with anyone, whether or not listed on this application, or in the process of adoption?</div></div>
-    
-    <div class="q-row"><div class="q-letter">4a.</div><div class="q-text">Has any Applicant ever received consultation, testing, or counseling for infertility, impotence, in-vitro fertilization, artificial insemination, or surrogacy?</div></div>
-    
-    <div class="q-row"><div class="q-letter">4b.</div><div class="q-text">Has any Applicant ever been treated for Sexually Transmitted Disease, hormone imbalance or oral contraceptive reaction of any kind?</div></div>
-    
-    <div class="q-row"><div class="q-letter">4c.</div><div class="q-text">Has any Applicant ever tested positive for the presence of the HIV infection, or been diagnosed as having Acquired Immune Deficiency Syndrome (AIDS), or AIDS Related Complex (ARC)?</div></div>
-    
-    <div class="q-row"><div class="q-letter">4d.</div><div class="q-text">Has any Applicant ever had or is any applicant considering any cosmetic or reconstructive surgery, or has any applicant ever had or been diagnosed or treated for a congenital birth defect or bodily deformity, or had or considering an organ transplant?</div></div>
-    
-    <div class="q-row"><div class="q-letter">4e.</div><div class="q-text">Has any Applicant ever had or does any applicant have a monitoring device, implants, amputation(s), prosthetic, or internal fixations (i.e. pins, plates, screws, shunt, pacemaker), or been advised to use a walking aid, wheelchair, or any other device or equipment?</div></div>
-    
-    <div class="q-row"><div class="q-letter">4f.</div><div class="q-text">Has any Applicant ever had Leukemia, Hodgkin’s Disease, Lymphoma or any other form of Cancer?</div></div>
-    
-    <div class="q-row"><div class="q-letter">4g.</div><div class="q-text">Has any Applicant ever had a tumor, cyst or any form of growth?</div></div>
-    
-    <div class="q-row"><div class="q-letter">4h.</div><div class="q-text">Has any Applicant ever had mental, emotional or nervous disease or disorder including but not limited to Depression, Anxiety, Bulimia, Anorexia, Bipolar Disorder, Mental Retardation, Learning/Behavior Disorder, or Attention Deficit Disorder?</div></div>
-    
-    <div class="q-row"><div class="q-letter">4i.</div><div class="q-text">Has any Applicant ever been advised or treated for alcohol or drug abuse, used illegal drugs, been a member of any alcohol or drug support group, or been given counseling or directive to seek treatment for use or abuse of alcohol or drugs?</div></div>
+    <div class="medical-header">
+        <h2 style="margin-bottom:5px;">Medical Underwriting Preview</h2>
+        <p style="color: #64748b;">(Required for Private/Underwritten Plans Only)</p>
+    </div>
 
-    <div class="q-row"><div class="q-letter">5.</div><div class="q-text">In the past five years, has any applicant gone to any health care professional for diagnosis, advice, treatment, checkup or consultation, been recommended treatment, or been confined to a hospital, clinic, or other medical facility for any condition, disease or disorder not listed above?</div></div>
-    
-    <div class="q-row"><div class="q-letter">6.</div><div class="q-text">Has any applicant been cited for a DWI or DUI or had their driver’s license suspended or revoked in the past 5 years, or currently on probation or been convicted of a felony in the past 10 years?</div></div>
-    
-    <div class="q-row"><div class="q-letter">7.</div><div class="q-text">Are all applicants U.S. Citizen(s) or do all applicants have Permanent Residence status (Green Card)?</div></div>
-    
-    <div class="q-row"><div class="q-letter">8.</div><div class="q-text">Do any applicants participate in any hazardous avocation or sport including but not limited to vehicle racing, skydiving, pilot or student pilot, scuba diving, rock or mountain climbing, or rodeo?</div></div>
-    
-    <div class="q-row"><div class="q-letter">9.</div><div class="q-text">Has any applicant traveled outside the U.S. for more than 30 days in past two years, or does any applicant plan to travel outside the U.S. for more than 30 days in the next two years?</div></div>
-    
-    <div class="q-row"><div class="q-letter">10.</div><div class="q-text">Has any person proposed for coverage had an immediate family member (father, mother, brother or sister) diagnosed with heart disease, heart attack, stroke, kidney disorder, diabetes, cancer, leukemia, or Hodgkin’s Disease?</div></div>
+    <div class="instruction">
+        Please review the categories below. If you have been treated for or diagnosed with any of these in the past, we will focus on ACA Marketplace options to ensure you are covered:
+    </div>
+
+    <div class="q-row"><div class="q-letter">a)</div><div class="q-text"><strong>Respiratory:</strong> Asthma, Allergies, Pneumonia, Emphysema, or Sleep Apnea?</div></div>
+    <div class="q-row"><div class="q-letter">b)</div><div class="q-text"><strong>Heart/Circulatory:</strong> High Blood Pressure, Heart Attack, Stroke, or Irregular Heartbeat?</div></div>
+    <div class="q-row"><div class="q-letter">c)</div><div class="q-text"><strong>Blood:</strong> Anemia, Hemophilia, or Blood Clots?</div></div>
+    <div class="q-row"><div class="q-letter">d)</div><div class="q-text"><strong>Digestive:</strong> Ulcers, Colitis, Crohn’s, Hernia, or Gallbladder disease?</div></div>
+    <div class="q-row"><div class="q-letter">e/f/g)</div><div class="q-text"><strong>Liver/Kidney/Pancreas:</strong> Hepatitis, Stones, or Diabetes?</div></div>
+    <div class="q-row"><div class="q-letter">h/i/j)</div><div class="q-text"><strong>Endocrine/Muscular:</strong> Thyroid issues, Parkinson's, Arthritis, or Lupus?</div></div>
+    <div class="q-row"><div class="q-letter">k/l)</div><div class="q-text"><strong>Spine/Nervous System:</strong> Herniated Discs, Epilepsy, Seizures, or Migraines?</div></div>
+    <div class="q-row"><div class="q-letter">m/n)</div><div class="q-text"><strong>Skin/Eyes/Ears:</strong> Psoriasis, Glaucoma, or Hearing loss?</div></div>
+    <div class="q-row"><div class="q-letter">o/p/q)</div><div class="q-text"><strong>Reproductive:</strong> Prostate, Breast, Pregnancy history, or Endometriosis?</div></div>
+    <div class="q-row"><div class="q-letter">3-10.</div><div class="q-text"><strong>Additional:</strong> Current pregnancy, HIV/AIDS, Cancer history, DUI/Felony history, or Hazardous sports?</div></div>
 
     <div class="footer">
-        Confidential Application Review Questionnaire
+        Professional Guidance in All Licensed States | &copy; 2026
     </div>
 </div>
 
